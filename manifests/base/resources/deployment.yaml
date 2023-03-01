@@ -1,0 +1,44 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: hpe-prometheus-exporter
+spec:
+  selector:
+    matchLabels:
+      app: hpe-prometheus-exporter
+  template:
+    metadata:
+      labels:
+        app: hpe-prometheus-exporter
+    spec:
+      containers:
+        - name: hpe-prometheus-exporter
+          image: hpe-prometheus-exporter
+          resources:
+            limits:
+              cpu: 200m
+              memory: 250Mi
+            requests:
+              cpu: 100m
+              memory: 120Mi
+          ports:
+          - containerPort: 8080
+          args:
+            - "--telemetry.addr=:8080"
+            - "--telemetry.path=/metrics"
+            # IMPORTANT: Uncomment this argument to confirm your
+            # acceptance of the HPE End User License Agreement at
+            # https://www.hpe.com/us/en/software/licensing.html
+            - "--accept-eula"
+            - "/etc/config"
+          env:
+            - name: LOG_LEVEL
+              value: info
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: storage-system-config
+              mountPath: /etc/config
+      volumes:
+        - name: storage-system-config
+          secret:
+            secretName: hpe-prometheus-exporter
