@@ -1,0 +1,5 @@
+- op: replace
+  path: /spec/maxReplicas
+  value:
+   - name:  hpe-prometheus-exporter
+     maxReplicas: 2
