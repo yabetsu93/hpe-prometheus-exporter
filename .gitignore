@@ -1,0 +1,4 @@
+# hide secrets 
+**/secrets/*.yaml
+# unhide enc files
+!**/secrets/*.enc.yaml

@@ -1,0 +1,30 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - resources/deployment.yaml
+  - resources/hpa.yaml
+  - resources/netpol.yaml
+  - resources/service.yaml
+
+labels:
+  - pairs:
+      env: dev
+    includeSelectors: false
+    includeTemplates: false
+
+commonAnnotations:
+  app.kubernetes.io/managed-by: jabespauya
+
+images:
+  - name: hpe-prometheus-exporter
+    newName: quay.io/hpestorage/array-exporter
+    newTag: v1.0.0
+
+secretGenerator:
+  - name: hpe-prometheus-exporter
+    envs:
+      - secrets/secrets.dec.yaml
+
+namespace: hpe-prometheus-exporter
+    
