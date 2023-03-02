@@ -22,7 +22,7 @@ jobs:
         id: install
       - name: Make temporal output
         run: |
-          mkdir -p output/kustomize
+          mkdir -p output/manifests
       - name: kustomize build to standard template
         run: |
           kubectl kustomize manifests/base > ./out/manifests/base-kustomize.yaml
