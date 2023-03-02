@@ -17,11 +17,11 @@ jobs:
         id: install
       - name: Make temporal output
         run: |
-          mkdir -p output/manifests
+          mkdir -p output/kustomize
       - name: kustomize build to standard template
         run: |
-          kubectl kustomize manifests/base > /out/manifests/base-kustomize.yaml 
-          kubectl kustomize manifests/overlays/dev > /out/manifests/overlays-kustomize.yaml
+          kubectl kustomize manifests/base > ./out/kustomize/base-kustomize.yaml 
+          kubectl kustomize manifests/overlays/dev > ./out/kustomize/overlays-kustomize.yaml
       - name: kube-score check
         uses: piraces/kube-score-ga@v0.1.3
         with:
