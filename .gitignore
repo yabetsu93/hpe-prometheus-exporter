@@ -1,4 +1,4 @@
 # hide secrets 
-**/secrets/*.yaml
+**/secrets/*.(yaml|env)
 # unhide enc files
-!**/secrets/*.enc.yaml
+!**/secrets/*.enc.(yaml|env)

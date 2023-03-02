@@ -24,7 +24,10 @@ images:
 secretGenerator:
   - name: hpe-prometheus-exporter
     envs:
-      - secrets/secrets.dec.yaml
+      - secrets/secrets.dec.env
+
+generatorOptions:
+  disableNameSuffixHash: true
 
 namespace: hpe-prometheus-exporter
     
