@@ -9,8 +9,3 @@ labels:
 
 resources:
   - ../../base
-
-patches:
-  - target:
-      kind: HorizontalPodAutoscaler
-    path: resources/hpa.yaml
